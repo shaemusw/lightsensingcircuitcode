@@ -1,12 +1,9 @@
 #include <stdio.h>
 
-
 int greenLedPin = 2;
 int yellowLedPin = 3;
 int redLedPin = 4;
-
 const int lightSensorPin = A0;
-
 
 void setup() {
   Serial.begin(9600);
@@ -14,37 +11,26 @@ void setup() {
   pinMode(yellowLedPin,OUTPUT);
   pinMode(redLedPin,OUTPUT);
   pinMode(lightSensorPin, INPUT);
-  // put your setup code here, to run once:
-
 }
 
 void loop() {
- 
-
-
   int analogValue = analogRead(lightSensorPin);
-
-   
+  Serial.println(analogValue); 
   
-   Serial.println(analogValue); 
-   
-  if(analogValue < 30){        
-   
-        
+  if(analogValue < 30){         
     digitalWrite(redLedPin, HIGH);
   }
+  
   else if(analogValue >= 30 && analogValue <= 68){
     digitalWrite(yellowLedPin, HIGH);
-   
-   
   }
+  
   else{ 
     digitalWrite(greenLedPin, HIGH);
   }
+  
   delay(200);
   digitalWrite(greenLedPin, LOW);
   digitalWrite(yellowLedPin, LOW);
   digitalWrite(redLedPin, LOW);
-  // put your main code here, to run repeatedly:
-
 }
